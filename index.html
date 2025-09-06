@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Group - Educational Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3a57a7;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #f5f7ff;
+            --dark: #2d3748;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: url('https://images.unsplash.com/photo-1522881193457-37ae97c905bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(58, 87, 167, 0.8), rgba(44, 62, 80, 0.8));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--dark);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 28px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .dashboard-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .dashboard-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .dashboard-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+        }
+
+        .dashboard-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Notice Board */
+        .notice-board {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .notice-board h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .notice-list {
+            list-style: none;
+        }
+
+        .notice-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Database Connection Status */
+        .db-status {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .db-status.connected {
+            border-left: 5px solid var(--success);
+        }
+
+        .db-status.disconnected {
+            border-left: 5px solid var(--danger);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .dashboard-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo" onclick="window.location.href='#'">
+                <i class="fas fa-bullseye"></i>
+                <h1>Target Group </h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Live Classes</a></li>
+                    <li><a href="#">Exams</a></li>
+                    <li><a href="#">Discussion</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" id="loginBtn">Login</button>
+                <button class="btn btn-primary" id="registerBtn">Register</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Quality Education for Your Future</h2>
+            <p>Target Group Institute provides the best learning experience with interactive classes, comprehensive exams, and dedicated teachers.</p>
+            <button class="btn btn-primary" id="exploreBtn">Explore Courses</button>
+        </div>
+    </section>
+
+    <!-- Database Connection Status -->
+    <div class="container">
+        <div class="db-status connected">
+            <h3><i class="fas fa-database"></i> Connected to Database: sd.sql</h3>
+            <p>Database connection established successfully. Ready to store and retrieve data.</p>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Platform Features</h2>
+                <p>Designed to provide the best learning experience for students and teaching experience for educators</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" onclick="alert('Online Exams feature would open here')">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Online Exams</h3>
+                    <p>Multiple choice exams created by teachers with instant results and performance analytics.</p>
+                </div>
+                <div class="feature-card" onclick="alert('Live Classes feature would open here')">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Live & Recorded Classes</h3>
+                    <p>Attend live interactive classes or watch recorded sessions at your convenience.</p>
+                </div>
+                <div class="feature-card" onclick="alert('Doubt Resolution feature would open here')">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Doubt Resolution</h3>
+                    <p>Post your doubts and get answers from teachers and fellow students in the discussion forum.</p>
+                </div>
+                <div class="feature-card" onclick="alert('Course Purchase feature would open here')">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Course Purchase</h3>
+                    <p>Purchase individual classes or full courses with secure payment methods.</p>
+                </div>
+                <div class="feature-card" onclick="alert('OTP Authentication feature would open here')">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>OTP Authentication</h3>
+                    <p>Secure login for students and teachers with OTP verification for enhanced security.</p>
+                </div>
+                <div class="feature-card" onclick="alert('Notice Board feature would open here')">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Notice Board</h3>
+                    <p>Important announcements and updates displayed on the notice board for everyone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="dashboard-preview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student & Teacher Dashboards</h2>
+                <p>Dedicated interfaces for students and teachers with all the tools needed for effective learning and teaching</p>
+            </div>
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" id="studentTab">Student Dashboard</button>
+                <button class="tab-btn" id="teacherTab">Teacher Dashboard</button>
+            </div>
+            <div class="dashboard-content" id="dashboardContent">
+                <!-- Student Dashboard Content -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card" onclick="alert('Exam section would open here')">
+                        <h3>Upcoming Exams</h3>
+                        <p>Mathematics Quiz - May 15</p>
+                        <p>Science Test - May 20</p>
+                        <p>English Assessment - May 25</p>
+                    </div>
+                    <div class="dashboard-card" onclick="alert('Live classes would open here')">
+                        <h3>Live Classes</h3>
+                        <p>Physics - 10:00 AM</p>
+                        <p>Chemistry - 2:00 PM</p>
+                        <p>Mathematics - 4:00 PM</p>
+                    </div>
+                    <div class="dashboard-card" onclick="alert('Your courses would open here')">
+                        <h3>My Courses</h3>
+                        <p>Mathematics 101</p>
+                        <p>Advanced Physics</p>
+                        <p>English Literature</p>
+                    </div>
+                </div>
+                <div class="notice-board">
+                    <h3>Notice Board</h3>
+                    <ul class="notice-list">
+                        <li class="notice-item" onclick="alert('Notice details would appear here')">Summer vacation classes starting from June 1st</li>
+                        <li class="notice-item" onclick="alert('Notice details would appear here')">Last date for exam registration is May 10th</li>
+                        <li class="notice-item" onclick="alert('Notice details would appear here')">New batch for crash course starting next week</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Target Group Institute</h3>
+                    <p>Providing quality education through innovative online learning solutions for over 10 years.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#">Courses</a></p>
+                    <p><a href="#">Live Classes</a></p>
+                    <p><a href="#">Exam Schedule</a></p>
+                    <p><a href="#">Discussion Forum</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rao market, 2nd floor, Bagaha 02</p>
+                    <p><i class="fas fa-phone"></i> 6203677237</p>
+                    <p><i class="fas fa-envelope"></i> info@targetgroup.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Target Group Institute. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Login</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px;">
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create an Account</h2>
+            <form>
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="user_type">I am a</label>
+                    <select id="user_type" name="user_type" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Dashboard switching functionality
+        function showDashboard(type) {
+            const dashboardContent = document.getElementById('dashboardContent');
+            
+            if (type === 'teacher') {
+                dashboardContent.innerHTML = `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card" onclick="alert('Exam management would open here')">
+                            <h3>Exam Management</h3>
+                            <p>Create New Exam</p>
+                            <p>View Results</p>
+                            <p>Question Bank</p>
+                        </div>
+                        <div class="dashboard-card" onclick="alert('Class management would open here')">
+                            <h3>Live Classes</h3>
+                            <p>Schedule Class</p>
+                            <p>Recorded Sessions</p>
+                            <p>Student Attendance</p>
+                        </div>
+                        <div class="dashboard-card" onclick="alert('Student interactions would open here')">
+                            <h3>Student Interactions</h3>
+                            <p>Doubt Resolution</p>
+                            <p>Messages</p>
+                            <p>Feedback</p>
+                        </div>
+                    </div>
+                    <div class="notice-board">
+                        <h3>Teacher Notice Board</h3>
+                        <ul class="notice-list">
+                            <li class="notice-item" onclick="alert('Notice details would appear here')">Staff meeting on Friday at 3 PM</li>
+                            <li class="notice-item" onclick="alert('Notice details would appear here')">Exam papers submission deadline - May 15th</li>
+                            <li class="notice-item" onclick="alert('Notice details would appear here')">New teaching resources available</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                dashboardContent.innerHTML = `
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card" onclick="alert('Exam section would open here')">
+                            <h3>Upcoming Exams</h3>
+                            <p>Mathematics Quiz - May 15</p>
+                            <p>Science Test - May 20</p>
+                            <p>English Assessment - May 25</p>
+                        </div>
+                        <div class="dashboard-card" onclick="alert('Live classes would open here')">
+                            <h3>Live Classes</h3>
+                            <p>Physics - 10:00 AM</p>
+                            <p>Chemistry - 2:00 PM</p>
+                            <p>Mathematics - 4:00 PM</p>
+                        </div>
+                        <div class="dashboard-card" onclick="alert('Your courses would open here')">
+                            <h3>My Courses</h3>
+                            <p>Mathematics 101</p>
+                            <p>Advanced Physics</p>
+                            <p>English Literature</p>
+                        </div>
+                    </div>
+                    <div class="notice-board">
+                        <h3>Notice Board</h3>
+                        <ul class="notice-list">
+                            <li class="notice-item" onclick="alert('Notice details would appear here')">Summer vacation classes starting from June 1st</li>
+                            <li class="notice-item" onclick="alert('Notice details would appear here')">Last date for exam registration is May 10th</li>
+                            <li class="notice-item" onclick="alert('Notice details would appear here')">New batch for crash course starting next week</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+
+        // Modal functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Initialize page with event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Login button
+            document.getElementById('loginBtn').addEventListener('click', function() {
+                openModal('loginModal');
+            });
+            
+            // Register button
+            document.getElementById('registerBtn').addEventListener('click', function() {
+                openModal('registerModal');
+            });
+            
+            // Explore courses button
+            document.getElementById('exploreBtn').addEventListener('click', function() {
+                alert('Course catalog would open here');
+            });
+            
+            // Student tab
+            document.getElementById('studentTab').addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                showDashboard('student');
+            });
+            
+            // Teacher tab
+            document.getElementById('teacherTab').addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                showDashboard('teacher');
+            });
+            
+            // Close buttons
+            document.querySelectorAll('.close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function() {
+                    this.closest('.modal').style.display = 'none';
+                });
+            });
+            
+            // Forgot password link
+            document.getElementById('forgotPassword').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Password reset functionality would appear here');
+            });
+            
+            // Close modal when clicking outside of it
+            window.addEventListener('click', function(event) {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Form submissions
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Form would be submitted to the server here');
+                    this.closest('.modal').style.display = 'none';
+                });
+            });
+            
+            // Simulate database interaction
+            const dbStatus = document.querySelector('.db-status');
+            dbStatus.innerHTML = `<h3><i class="fas fa-sync-alt fa-spin"></i> Connecting to sd.sql database...</h3>`;
+            
+            setTimeout(() => {
+                dbStatus.innerHTML = `
+                    <h3><i class="fas fa-database"></i> Connected to Database: sd.sql</h3>
+                    <p>Database connection established successfully. Ready to store and retrieve data.</p>
+                    <p><strong>Recent query:</strong> SELECT * FROM users WHERE role='student'</p>
+                `;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
