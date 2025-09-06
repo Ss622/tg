@@ -124,6 +124,12 @@
             transform: translateY(-2px);
         }
 
+        .btn-disabled {
+            background: #95a5a6;
+            color: white;
+            cursor: not-allowed;
+        }
+
         /* Hero Section */
         .hero {
             padding: 100px 0;
@@ -153,11 +159,13 @@
         .hero h2 {
             font-size: 3rem;
             margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
         }
 
         /* Features Section */
@@ -175,6 +183,20 @@
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         .section-title p {
@@ -197,6 +219,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
             cursor: pointer;
+            animation: fadeIn 1s ease;
         }
 
         .feature-card:hover {
@@ -254,6 +277,7 @@
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
         }
 
         .dashboard-grid {
@@ -267,6 +291,13 @@
             border-radius: 8px;
             padding: 20px;
             min-height: 200px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .dashboard-card h3 {
@@ -453,6 +484,138 @@
             color: var(--primary);
         }
 
+        /* Course List */
+        .course-list {
+            margin: 20px 0;
+        }
+
+        .course-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .no-course {
+            text-align: center;
+            padding: 30px;
+            color: #7f8c8d;
+        }
+
+        /* Exam Interface */
+        .exam-interface {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .options {
+            margin: 10px 0;
+        }
+
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            background: #f5f7ff;
+        }
+
+        /* Merit List */
+        .merit-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .merit-list th, .merit-list td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .merit-list th {
+            background: var(--primary);
+            color: white;
+        }
+
+        .merit-list tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .merit-list tr:hover {
+            background: #f1f1f1;
+        }
+
+        /* Discussion Section */
+        .discussion-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .doubt-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .doubt-item:hover {
+            background: #f5f7ff;
+        }
+
+        .answer-section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
@@ -487,11 +650,11 @@
             <nav>
                 <ul>
                     <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="#">Live Classes</a></li>
-                    <li><a href="#">Exams</a></li>
-                    <li><a href="#">Discussion</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#" onclick="showCourses()">Courses</a></li>
+                    <li><a href="#" id="liveClassLink">Live Classes</a></li>
+                    <li><a href="#" onclick="showExams()">Exams</a></li>
+                    <li><a href="#" onclick="showDiscussion()">Discussion</a></li>
+                    <li><a href="#" onclick="showMeritList()">Merit List</a></li>
                 </ul>
             </nav>
             <div class="auth-buttons">
@@ -526,47 +689,47 @@
                 <p>Designed to provide the best learning experience for students and teaching experience for educators</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card" onclick="alert('Online Exams feature would open here')">
+                <div class="feature-card" onclick="showCourses()">
                     <div class="feature-icon">
                         <i class="fas fa-book"></i>
                     </div>
                     <h3>Online Exams</h3>
                     <p>Multiple choice exams created by teachers with instant results and performance analytics.</p>
                 </div>
-                <div class="feature-card" onclick="alert('Live Classes feature would open here')">
+                <div class="feature-card" onclick="checkLiveClass()">
                     <div class="feature-icon">
                         <i class="fas fa-video"></i>
                     </div>
                     <h3>Live & Recorded Classes</h3>
                     <p>Attend live interactive classes or watch recorded sessions at your convenience.</p>
                 </div>
-                <div class="feature-card" onclick="alert('Doubt Resolution feature would open here')">
+                <div class="feature-card" onclick="showDiscussion()">
                     <div class="feature-icon">
                         <i class="fas fa-comments"></i>
                     </div>
                     <h3>Doubt Resolution</h3>
                     <p>Post your doubts and get answers from teachers and fellow students in the discussion forum.</p>
                 </div>
-                <div class="feature-card" onclick="alert('Course Purchase feature would open here')">
+                <div class="feature-card" onclick="showCourses()">
                     <div class="feature-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <h3>Course Purchase</h3>
                     <p>Purchase individual classes or full courses with secure payment methods.</p>
                 </div>
-                <div class="feature-card" onclick="alert('OTP Authentication feature would open here')">
+                <div class="feature-card" onclick="openModal('loginModal')">
                     <div class="feature-icon">
                         <i class="fas fa-user-check"></i>
                     </div>
                     <h3>OTP Authentication</h3>
                     <p>Secure login for students and teachers with OTP verification for enhanced security.</p>
                 </div>
-                <div class="feature-card" onclick="alert('Notice Board feature would open here')">
+                <div class="feature-card" onclick="showMeritList()">
                     <div class="feature-icon">
                         <i class="fas fa-bullhorn"></i>
                     </div>
-                    <h3>Notice Board</h3>
-                    <p>Important announcements and updates displayed on the notice board for everyone.</p>
+                    <h3>Merit List</h3>
+                    <p>Check your ranking and performance compared to other students.</p>
                 </div>
             </div>
         </div>
@@ -586,31 +749,31 @@
             <div class="dashboard-content" id="dashboardContent">
                 <!-- Student Dashboard Content -->
                 <div class="dashboard-grid">
-                    <div class="dashboard-card" onclick="alert('Exam section would open here')">
-                        <h3>Upcoming Exams</h3>
+                    <div class="dashboard-card" onclick="showExams()">
+                        <h3><i class="fas fa-graduation-cap"></i> Upcoming Exams</h3>
                         <p>Mathematics Quiz - May 15</p>
                         <p>Science Test - May 20</p>
                         <p>English Assessment - May 25</p>
                     </div>
-                    <div class="dashboard-card" onclick="alert('Live classes would open here')">
-                        <h3>Live Classes</h3>
+                    <div class="dashboard-card" onclick="checkLiveClass()">
+                        <h3><i class="fas fa-video"></i> Live Classes</h3>
                         <p>Physics - 10:00 AM</p>
                         <p>Chemistry - 2:00 PM</p>
                         <p>Mathematics - 4:00 PM</p>
                     </div>
-                    <div class="dashboard-card" onclick="alert('Your courses would open here')">
-                        <h3>My Courses</h3>
+                    <div class="dashboard-card" onclick="showCourses()">
+                        <h3><i class="fas fa-book"></i> My Courses</h3>
                         <p>Mathematics 101</p>
                         <p>Advanced Physics</p>
                         <p>English Literature</p>
                     </div>
                 </div>
                 <div class="notice-board">
-                    <h3>Notice Board</h3>
+                    <h3><i class="fas fa-bullhorn"></i> Notice Board</h3>
                     <ul class="notice-list">
-                        <li class="notice-item" onclick="alert('Notice details would appear here')">Summer vacation classes starting from June 1st</li>
-                        <li class="notice-item" onclick="alert('Notice details would appear here')">Last date for exam registration is May 10th</li>
-                        <li class="notice-item" onclick="alert('Notice details would appear here')">New batch for crash course starting next week</li>
+                        <li class="notice-item">Summer vacation classes starting from June 1st</li>
+                        <li class="notice-item">Last date for exam registration is May 10th</li>
+                        <li class="notice-item">New batch for crash course starting next week</li>
                     </ul>
                 </div>
             </div>
@@ -633,20 +796,20 @@
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <p><a href="#">Courses</a></p>
-                    <p><a href="#">Live Classes</a></p>
-                    <p><a href="#">Exam Schedule</a></p>
-                    <p><a href="#">Discussion Forum</a></p>
+                    <p><a href="#" onclick="showCourses()">Courses</a></p>
+                    <p><a href="#" onclick="checkLiveClass()">Live Classes</a></p>
+                    <p><a href="#" onclick="showExams()">Exam Schedule</a></p>
+                    <p><a href="#" onclick="showDiscussion()">Discussion Forum</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Rao market, 2nd floor, Bagaha 02</p>
-                    <p><i class="fas fa-phone"></i> 6203677237</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rao Market, 2nd Floor, Bagaha-02</p>
+                    <p><i class="fas fa-phone"></i> +90 923677237</p>
                     <p><i class="fas fa-envelope"></i> info@targetgroup.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Target Group Institute. All rights reserved.</p>
+                <p>&copy; 2023 Target Group Institute. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -707,70 +870,230 @@
         </div>
     </div>
 
+    <!-- Course Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Available Courses</h2>
+            <div id="courseList">
+                <div class="no-course">
+                    <i class="fas fa-book-open" style="font-size: 48px; margin-bottom: 15px;"></i>
+                    <h3>No Courses Available</h3>
+                    <p>Check back later for new courses</p>
+                </div>
+            </div>
+            <div id="teacherCourseOptions" style="display: none; margin-top: 20px;">
+                <button class="btn btn-primary" onclick="addNewCourse()">Add New Course</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam Modal -->
+    <div id="examModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Available Exams</h2>
+            <div id="examList">
+                <div class="no-course">
+                    <i class="fas fa-file-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                    <h3>No Exams Available</h3>
+                    <p>Check back later for scheduled exams</p>
+                </div>
+            </div>
+            <div id="teacherExamOptions" style="display: none; margin-top: 20px;">
+                <button class="btn btn-primary" onclick="createNewExam()">Create New Exam</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Exam Modal -->
+    <div id="createExamModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Exam</h2>
+            <form id="examForm">
+                <div class="form-group">
+                    <label for="examTitle">Exam Title</label>
+                    <input type="text" id="examTitle" name="examTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="examDescription">Description</label>
+                    <textarea id="examDescription" name="examDescription" required></textarea>
+                </div>
+                
+                <div id="questionsContainer">
+                    <!-- Questions will be added here -->
+                </div>
+                
+                <button type="button" class="btn btn-outline" onclick="addQuestion()">Add Question</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Create Exam</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Discussion Modal -->
+    <div id="discussionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Discussion Forum</h2>
+            <div class="discussion-container">
+                <div class="doubt-item" onclick="toggleAnswer(this)">
+                    <h4>How to solve quadratic equations?</h4>
+                    <p>Posted by: Student123 - 2 hours ago</p>
+                    <div class="answer-section" style="display: none;">
+                        <p><strong>Answer:</strong> You can use the quadratic formula x = [-b ± √(b² - 4ac)] / 2a</p>
+                        <p>Answered by: MathTeacher - 1 hour ago</p>
+                    </div>
+                </div>
+                
+                <div class="doubt-item" onclick="toggleAnswer(this)">
+                    <h4>What is the best way to prepare for physics exam?</h4>
+                    <p>Posted by: ScienceStudent - 5 hours ago</p>
+                    <div class="answer-section" style="display: none;">
+                        <p><strong>Answer:</strong> Focus on understanding concepts rather than memorizing. Practice numerical problems regularly.</p>
+                        <p>Answered by: PhysicsExpert - 3 hours ago</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <h3>Ask a Question</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="doubtTitle">Question Title</label>
+                        <input type="text" id="doubtTitle" name="doubtTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="doubtDescription">Your Question</label>
+                        <textarea id="doubtDescription" name="doubtDescription" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Question</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Merit List Modal -->
+    <div id="meritListModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Student Merit List</h2>
+            <table class="merit-list">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Student Name</th>
+                        <th>Score</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul Sharma</td>
+                        <td>95/100</td>
+                        <td>95%</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Priya Patel</td>
+                        <td>92/100</td>
+                        <td>92%</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Amit Kumar</td>
+                        <td>89/100</td>
+                        <td>89%</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sneha Gupta</td>
+                        <td>87/100</td>
+                        <td>87%</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Mohammed Khan</td>
+                        <td>85/100</td>
+                        <td>85%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <script>
+        // Global variables
+        let isTeacher = false;
+        let isLiveClassAvailable = false;
+        let questionCount = 0;
+
         // Dashboard switching functionality
         function showDashboard(type) {
             const dashboardContent = document.getElementById('dashboardContent');
             
             if (type === 'teacher') {
+                isTeacher = true;
                 dashboardContent.innerHTML = `
                     <div class="dashboard-grid">
-                        <div class="dashboard-card" onclick="alert('Exam management would open here')">
-                            <h3>Exam Management</h3>
+                        <div class="dashboard-card" onclick="showExams()">
+                            <h3><i class="fas fa-tasks"></i> Exam Management</h3>
                             <p>Create New Exam</p>
                             <p>View Results</p>
                             <p>Question Bank</p>
                         </div>
-                        <div class="dashboard-card" onclick="alert('Class management would open here')">
-                            <h3>Live Classes</h3>
+                        <div class="dashboard-card" onclick="manageLiveClass()">
+                            <h3><i class="fas fa-chalkboard-teacher"></i> Live Classes</h3>
                             <p>Schedule Class</p>
                             <p>Recorded Sessions</p>
                             <p>Student Attendance</p>
                         </div>
-                        <div class="dashboard-card" onclick="alert('Student interactions would open here')">
-                            <h3>Student Interactions</h3>
+                        <div class="dashboard-card" onclick="showDiscussion()">
+                            <h3><i class="fas fa-users"></i> Student Interactions</h3>
                             <p>Doubt Resolution</p>
                             <p>Messages</p>
                             <p>Feedback</p>
                         </div>
                     </div>
                     <div class="notice-board">
-                        <h3>Teacher Notice Board</h3>
+                        <h3><i class="fas fa-bullhorn"></i> Teacher Notice Board</h3>
                         <ul class="notice-list">
-                            <li class="notice-item" onclick="alert('Notice details would appear here')">Staff meeting on Friday at 3 PM</li>
-                            <li class="notice-item" onclick="alert('Notice details would appear here')">Exam papers submission deadline - May 15th</li>
-                            <li class="notice-item" onclick="alert('Notice details would appear here')">New teaching resources available</li>
+                            <li class="notice-item">Staff meeting on Friday at 3 PM</li>
+                            <li class="notice-item">Exam papers submission deadline - May 15th</li>
+                            <li class="notice-item">New teaching resources available</li>
                         </ul>
                     </div>
                 `;
             } else {
+                isTeacher = false;
                 dashboardContent.innerHTML = `
                     <div class="dashboard-grid">
-                        <div class="dashboard-card" onclick="alert('Exam section would open here')">
-                            <h3>Upcoming Exams</h3>
+                        <div class="dashboard-card" onclick="showExams()">
+                            <h3><i class="fas fa-graduation-cap"></i> Upcoming Exams</h3>
                             <p>Mathematics Quiz - May 15</p>
                             <p>Science Test - May 20</p>
                             <p>English Assessment - May 25</p>
                         </div>
-                        <div class="dashboard-card" onclick="alert('Live classes would open here')">
-                            <h3>Live Classes</h3>
+                        <div class="dashboard-card" onclick="checkLiveClass()">
+                            <h3><i class="fas fa-video"></i> Live Classes</h3>
                             <p>Physics - 10:00 AM</p>
                             <p>Chemistry - 2:00 PM</p>
                             <p>Mathematics - 4:00 PM</p>
                         </div>
-                        <div class="dashboard-card" onclick="alert('Your courses would open here')">
-                            <h3>My Courses</h3>
+                        <div class="dashboard-card" onclick="showCourses()">
+                            <h3><i class="fas fa-book"></i> My Courses</h3>
                             <p>Mathematics 101</p>
                             <p>Advanced Physics</p>
                             <p>English Literature</p>
                         </div>
                     </div>
                     <div class="notice-board">
-                        <h3>Notice Board</h3>
+                        <h3><i class="fas fa-bullhorn"></i> Notice Board</h3>
                         <ul class="notice-list">
-                            <li class="notice-item" onclick="alert('Notice details would appear here')">Summer vacation classes starting from June 1st</li>
-                            <li class="notice-item" onclick="alert('Notice details would appear here')">Last date for exam registration is May 10th</li>
-                            <li class="notice-item" onclick="alert('Notice details would appear here')">New batch for crash course starting next week</li>
+                            <li class="notice-item">Summer vacation classes starting from June 1st</li>
+                            <li class="notice-item">Last date for exam registration is May 10th</li>
+                            <li class="notice-item">New batch for crash course starting next week</li>
                         </ul>
                     </div>
                 `;
@@ -784,6 +1107,210 @@
 
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Show courses
+        function showCourses() {
+            const courseModal = document.getElementById('courseModal');
+            const courseList = document.getElementById('courseList');
+            const teacherOptions = document.getElementById('teacherCourseOptions');
+            
+            // Simulate checking if courses are available (random for demo)
+            const hasCourses = Math.random() > 0.5;
+            
+            if (hasCourses) {
+                courseList.innerHTML = `
+                    <div class="course-list">
+                        <div class="course-item">
+                            <div>
+                                <h4>Mathematics 101</h4>
+                                <p>Introduction to Algebra and Geometry</p>
+                            </div>
+                            <button class="btn btn-primary">Enroll</button>
+                        </div>
+                        <div class="course-item">
+                            <div>
+                                <h4>Advanced Physics</h4>
+                                <p>Mechanics, Thermodynamics, and Electromagnetism</p>
+                            </div>
+                            <button class="btn btn-primary">Enroll</button>
+                        </div>
+                        <div class="course-item">
+                            <div>
+                                <h4>English Literature</h4>
+                                <p>Classic and Modern English Literature</p>
+                            </div>
+                            <button class="btn btn-primary">Enroll</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                courseList.innerHTML = `
+                    <div class="no-course">
+                        <i class="fas fa-book-open" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <h3>No Courses Available</h3>
+                        <p>Check back later for new courses</p>
+                    </div>
+                `;
+            }
+            
+            // Show teacher options if user is a teacher
+            teacherOptions.style.display = isTeacher ? 'block' : 'none';
+            
+            openModal('courseModal');
+        }
+
+        // Show exams
+        function showExams() {
+            const examModal = document.getElementById('examModal');
+            const examList = document.getElementById('examList');
+            const teacherOptions = document.getElementById('teacherExamOptions');
+            
+            // Simulate checking if exams are available (random for demo)
+            const hasExams = Math.random() > 0.5;
+            
+            if (hasExams) {
+                examList.innerHTML = `
+                    <div class="course-list">
+                        <div class="course-item">
+                            <div>
+                                <h4>Mathematics Quiz</h4>
+                                <p>Date: May 15, 2023 | Duration: 30 minutes</p>
+                            </div>
+                            <button class="btn btn-primary">Start Exam</button>
+                        </div>
+                        <div class="course-item">
+                            <div>
+                                <h4>Science Test</h4>
+                                <p>Date: May 20, 2023 | Duration: 45 minutes</p>
+                            </div>
+                            <button class="btn btn-primary">Start Exam</button>
+                        </div>
+                        <div class="course-item">
+                            <div>
+                                <h4>English Assessment</h4>
+                                <p>Date: May 25, 2023 | Duration: 60 minutes</p>
+                            </div>
+                            <button class="btn btn-primary">Start Exam</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                examList.innerHTML = `
+                    <div class="no-course">
+                        <i class="fas fa-file-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <h3>No Exams Available</h3>
+                        <p>Check back later for scheduled exams</p>
+                    </div>
+                `;
+            }
+            
+            // Show teacher options if user is a teacher
+            teacherOptions.style.display = isTeacher ? 'block' : 'none';
+            
+            openModal('examModal');
+        }
+
+        // Check live class status
+        function checkLiveClass() {
+            // Simulate checking if live class is available (random for demo)
+            isLiveClassAvailable = Math.random() > 0.5;
+            
+            if (isLiveClassAvailable) {
+                alert('Live class is available! Joining now...');
+                // In a real application, this would redirect to the live class
+            } else {
+                alert('No live class is currently available. Please check the schedule.');
+            }
+        }
+
+        // Manage live class (teacher only)
+        function manageLiveClass() {
+            if (isTeacher) {
+                const startClass = confirm('Do you want to start a live class?');
+                if (startClass) {
+                    isLiveClassAvailable = true;
+                    alert('Live class started! Students can now join.');
+                    document.getElementById('liveClassLink').classList.remove('btn-disabled');
+                }
+            }
+        }
+
+        // Show discussion forum
+        function showDiscussion() {
+            openModal('discussionModal');
+        }
+
+        // Toggle answer visibility
+        function toggleAnswer(element) {
+            const answerSection = element.querySelector('.answer-section');
+            answerSection.style.display = answerSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Show merit list
+        function showMeritList() {
+            openModal('meritListModal');
+        }
+
+        // Create new exam (teacher only)
+        function createNewExam() {
+            if (isTeacher) {
+                openModal('createExamModal');
+            }
+        }
+
+        // Add new question to exam
+        function addQuestion() {
+            questionCount++;
+            const questionsContainer = document.getElementById('questionsContainer');
+            
+            const questionHTML = `
+                <div class="question" id="question-${questionCount}">
+                    <h4>Question ${questionCount}</h4>
+                    <div class="form-group">
+                        <label for="question-${questionCount}-text">Question Text</label>
+                        <input type="text" id="question-${questionCount}-text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Options</label>
+                        <input type="text" placeholder="Option 1" required>
+                        <input type="text" placeholder="Option 2" required>
+                        <input type="text" placeholder="Option 3" required>
+                        <input type="text" placeholder="Option 4" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correct-answer-${questionCount}">Correct Answer</label>
+                        <select id="correct-answer-${questionCount}" required>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-outline" onclick="removeQuestion(${questionCount})">Remove Question</button>
+                </div>
+            `;
+            
+            questionsContainer.insertAdjacentHTML('beforeend', questionHTML);
+        }
+
+        // Remove question from exam
+        function removeQuestion(id) {
+            const questionElement = document.getElementById(`question-${id}`);
+            if (questionElement) {
+                questionElement.remove();
+            }
+        }
+
+        // Add new course (teacher only)
+        function addNewCourse() {
+            if (isTeacher) {
+                const courseName = prompt('Enter course name:');
+                if (courseName) {
+                    alert(`Course "${courseName}" added successfully!`);
+                    closeModal('courseModal');
+                }
+            }
         }
 
         // Initialize page with event listeners
@@ -800,7 +1327,7 @@
             
             // Explore courses button
             document.getElementById('exploreBtn').addEventListener('click', function() {
-                alert('Course catalog would open here');
+                showCourses();
             });
             
             // Student tab
@@ -847,6 +1374,9 @@
                     this.closest('.modal').style.display = 'none';
                 });
             });
+            
+            // Disable live class link initially
+            document.getElementById('liveClassLink').classList.add('btn-disabled');
             
             // Simulate database interaction
             const dbStatus = document.querySelector('.db-status');
